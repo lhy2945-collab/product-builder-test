@@ -333,6 +333,12 @@
       font-weight: 700;
       color: rgba(255,255,255,.92);
     }
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      align-items: start;
+    }
     .contact-form input:not([type="checkbox"]):not([type="radio"]),
     .contact-form textarea {
       width: 100%;
@@ -354,6 +360,12 @@
     .option-grid {
       display: grid;
       gap: 10px;
+    }
+    .option-grid.compact-two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .option-grid.compact-three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     .option-chip {
       display: flex;
@@ -401,6 +413,11 @@
       .grid-3,
       .steps,
       .highlight {
+        grid-template-columns: 1fr;
+      }
+      .form-row,
+      .option-grid.compact-two,
+      .option-grid.compact-three {
         grid-template-columns: 1fr;
       }
       .nav-links { display: none; }
@@ -576,7 +593,7 @@
             </label>
             <fieldset>
               <legend>서비스 종류</legend>
-              <div class="option-grid">
+              <div class="option-grid compact-two">
                 <label class="option-chip">
                   <input type="checkbox" name="service_type[]" value="에어컨 분해세척" />
                   에어컨 분해세척
@@ -587,30 +604,32 @@
                 </label>
               </div>
             </fieldset>
-            <label>
-              희망일자
-              <input type="date" name="preferred_date" required />
-            </label>
-            <fieldset>
-              <legend>희망 시간대</legend>
-              <div class="option-grid">
-                <label class="option-chip">
-                  <input type="radio" name="preferred_time" value="오전" required />
-                  오전
-                </label>
-                <label class="option-chip">
-                  <input type="radio" name="preferred_time" value="오후" />
-                  오후
-                </label>
-                <label class="option-chip">
-                  <input type="radio" name="preferred_time" value="아무때나" />
-                  아무때나
-                </label>
-              </div>
-            </fieldset>
+            <div class="form-row">
+              <label>
+                희망일자
+                <input type="date" name="preferred_date" required />
+              </label>
+              <fieldset>
+                <legend>희망 시간대</legend>
+                <div class="option-grid compact-three">
+                  <label class="option-chip">
+                    <input type="radio" name="preferred_time" value="오전" required />
+                    오전
+                  </label>
+                  <label class="option-chip">
+                    <input type="radio" name="preferred_time" value="오후" />
+                    오후
+                  </label>
+                  <label class="option-chip">
+                    <input type="radio" name="preferred_time" value="아무때나" />
+                    아무때나
+                  </label>
+                </div>
+              </fieldset>
+            </div>
             <label>
               문의 내용
-              <textarea name="message" placeholder="벽걸이 에어컨 1대&#10;세탁기 드럼 1대&#10;세척 요청" required></textarea>
+              <textarea name="message" placeholder="예시) 벽걸이 에어컨 1대&#10;세탁기 드럼 1대&#10;세척 요청" required></textarea>
             </label>
             <button type="submit" class="btn btn-primary">문의 보내기</button>
             <p class="form-note">제출하면 Formspree를 통해 문의가 전달됩니다.</p>
